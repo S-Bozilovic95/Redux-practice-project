@@ -1,31 +1,31 @@
 import { useDispatch, useSelector } from "react-redux";
+import { counterActions } from "../store/counter-slice";
 import classes from "./Counter.module.css";
 
 const Counter = () => {
   // useSelector hook omogucava da dohvatim state iz reduxa
   // automatski podesava komponentu kao subscribera
   // i na taj nacin obezbedjuje da dobijem najsveziju vrednost state-a
-  const counter = useSelector((state) => state.counter);
-  const showCounter = useSelector((state) => state.showCounter);
+  const { counter, showCounter } = useSelector((state) => state.counter);
 
   // useDispatch hook omogucava pristup dispatch funkciji
   // koja se izvrsava u reduceru u reduxu
   const dispatch = useDispatch();
 
   const incrementHandler = () => {
-    dispatch({ type: "increment" });
+    dispatch(counterActions.increment());
   };
 
   const decrementHandler = () => {
-    dispatch({ type: "decrement" });
+    dispatch(counterActions.decrement());
   };
 
   const increaseByNumHandler = () => {
-    dispatch({ type: "increasebynum", amount: 5 });
+    dispatch(counterActions.increasebynum(5));
   };
 
   const toggleCounterHandler = () => {
-    dispatch({ type: "toggle" });
+    dispatch(counterActions.toggle());
   };
 
   return (
